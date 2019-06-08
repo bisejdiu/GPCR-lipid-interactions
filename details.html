@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>DETAILS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-y: scroll;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    input {
+      font-size: 2em;
+    }
+  </style>
+
+  <link href="//vjs.zencdn.net/7.3.0/video-js.min.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/linearicons.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/video.css">
+
+</head>
+
+<body>
+
+  <script>
+    // document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+      // ':35729/livereload.js?snipver=1"></' + 'script>')
+  </script>
+
+  <!-- Start Header Area -->
+  <header class="default-header">
+    <div class="container">
+      <div class="header-wrap">
+        <div class="header-top d-flex justify-content-between align-items-center">
+          <div class="logo">
+            <a href="index.html"><img src="img/logo.png" height="37" width="124"></a>
+          </div>
+          <div class="main-menubar d-flex align-items-center">
+            <nav class="hide">
+              <a href="index.html">Home</a>
+              <a href="details.html">Details</a>
+              <a href="contact.html">Contact</a>
+            </nav>
+            <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div id="viewport" style="width:55%; height:10%;"></div>
+
+
+  <script src="js/jquery-2.2.4.min.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <div>
+    <h1 style="font-size: 60px; text-align: center; padding-top: 70px">VISUALIZATION DETAILS</h1>
+  </div>
+
+  <div style="text-align: center; padding-top: 30px">
+    <p id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+      The following is a brief description of the data visualization presented here.
+      The data are calculated using the coarse-grained approach to MD simulations as implemented
+      in the MARTINI model. The simulation setup we use is documented in detail by Heligi et al.
+      and Corradi et al. It has also been used by Marino et al. </p>
+
+    <p id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+      Here, we mainly show 3D density data for cholesterol and phosphatidylinositol phosphates (PIPs)
+      lipids' interactions with G Protein - Coupled Receptors. For the 3D density calculations we
+      only consider lipids within a 6 nm radius around the proteins. In the video below cholesterol
+      molecules (represented by enlarged ROH beads in red) that fit this criterion for one of the proteins
+      are displayed. Blue and red surfaces indicate the position of GM lipids and other cholesterol
+      molecules, repsectively. A higher resolution video is available
+      <a href="https://www.youtube.com/watch?v=lcPZNt4C4c4" target="_blank">here</a>.
+    </p>
+  </div>
+
+
+  <div style="padding-top: 20px">
+  <video id='my-video' class='video-js' controls preload='auto' width='800' height='400'
+  poster='img/thumbnail.jpg' data-setup='{}' style="display: block; margin: 0 auto;">
+    <source src='img/rhodopsin.mp4' type='video/mp4'>
+    <p class='vjs-no-js'>
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+    </p>
+  </video>
+</div>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+    We have calculate densities using three different approaches:
+  </p>
+
+  <ul type="disc" id="article-space" style="max-width: 60em; padding-top: 15px; padding-left: 20px; margin: auto;">
+    <li>Using VMD's <a href="https://www.ks.uiuc.edu/Research/vmd/plugins/volmapgui/" target="_blank">VolMap</a> utility
+    </li>
+    <li>Our in-house Thickness/Curvature/Density <a href="https://pubs.acs.org/doi/full/10.1021/acscentsci.8b00143"
+        target="_blank">g_surf</a> program</li>
+    <li>Using the MDAnalysis <a href="https://www.mdanalysis.org/GridDataFormats/gridData/overview.html"
+        target="_blank">gridData</a> utility</li>
+  </ul>
+
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+    The data presented here are calculated using the VolMap utility implemented in VMD.
+    A simple code snippet to calculate <span style="font-style:italic">dx</span> densities starting from a
+    GROMACS trajectory and only selecting the CP beads of PIP lipids is only a few lines of code:
+  </p>
+
+  <div id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+  <div class=" highlight" style="background-color: rgb(239, 242, 243);">
+<pre>
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  <span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+  <span class="kn">from</span> <span class="nn">gridData</span> <span class="k">import</span> <span class="n">Grid</span>
+
+  <span class="n">traj</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;trajectory.xtc&#39;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s1">&#39;coordinates.gro&#39;</span><span class="p">)</span>
+  <span class="n">PIPs_ndx</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;(resname =~ &#39;POP[1-3]&#39;) and (name CP)&quot;</span><span class="p">)</span>
+  <span class="n">PIPs</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="p">[:,</span> <span class="n">PIPs_ndx</span><span class="p">,</span> <span class="p">:]</span>
+<!--  <span class="n">PIPs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PIPs</span><span class="p">)</span> -->
+  <span class="n">H</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogramdd</span><span class="p">(</span><span class="n">PIPs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">PIPs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">PIPs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+
+  <span class="n">g</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">edges</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+  <span class="n">g</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s1">&#39;density.dx&#39;</span><span class="p">)</span>
+</pre>
+</div>
+  </div>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+    Averaging over the four copies we have in our systems is also quite straightforward (considering our system design,
+    it only makes sense to average in the lateral dimension):
+  </p>
+
+
+  <div id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+    <div class=" highlight" style="background-color: rgb(239, 242, 243);">
+      <pre>
+<span class="n">newH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+            <span class="n">newH</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span> <span class="n">k</span><span class="p">])</span> <span class="o">/</span> <span class="mi">4</span>
+</pre></div>
+
+  </div>
+
+  <div style="text-align: center;">
+    <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+      We use the <a href="http://nglviewer.org/" target="_blank">ngl viewer</a> to visualize the data in several
+      representations.
+      Cholesterol and PIP lipids are shown in pink and dark magenta, respectively. The default surface representation is
+      <span style="font-style:italic">smooth</span>, but other otions are also available. Using the control key
+      and the mouse scroll wheel you can change the isolevels of the surfaces (either each lipid individually, or
+      both of them simultaneously).
+      The slice representation of the density is usefull because it eliminates the need to scroll and fine-tune the lipid
+      surfaces. You can "slice" the 3D density of lipids in the <span style="font-style: italic">x, y, z</span>
+      direction for each lipid, resulting in the familiar 2D surfaces. When viewing the slice representation, make sure to
+      toggle off the density of that particular lipid, so that it does not interfere with the visualization.
+      <br>
+      <br>The average number of contacts of GPCRs with cholesterol and PIP lipids as well as the average duration of those
+      contacts is shown as a surface coloring of the protein where an increase in the intensity of the color red
+      corresponds to increased number and duration of contacts, respectively. The labels of each protein residue are
+      also shown with the relative size of the label corresponding to their number and duration of contacts,
+      respectively. To view labels make sure to first show either the DURATION or NUMBER maps first.
+    </p>
+    <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+      Visualization programs like <a href="https://pymol.org" target="_blank">PyMOL</a> support a more advanced coloring
+      scheme of 3D densities as shown in the example
+      below for Rhodopsin. You can differentiate regions of higher density (yellow and red here) by a different color
+      compared to regions of lower density (blue in the example below).
+    </p>
+
+    <img class="sysVideo" width="538" height="465" src="img/rhodopsinPymol.png" alt="">
+    <div style="text-align: center; display: block; padding-top: 15px">
+      <p>
+        <span style="font-style: italic; text-align: right; vertical-align: middle">
+          PyMOL visualization of Rhodopsin-Cholesterol density isolevels.
+        </span>
+      </p>
+    </div>
+
+    <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+      Lastly, we display both the average number of contacts for each residue with cholesterol and PIP lipids as well as
+      the average duration of the longest contact formed between them. In the figure below you can see how accounting for
+      the longevity of contacts allows us to clearly identify binding sites. Currently we only show these calculations
+      for cholesterol.
+    </p>
+  </div>
+
+
+  <img class="sysVideo" width="434" height="315" src="img/rhodCOMP.png" alt="">
+  <div style="text-align: center; display: block; padding-top: 10px">
+    <p>
+      <span style="font-style: italic; text-align: right; vertical-align: middle">
+        Comparison of protein-lipid number of contacts and duration of contacts.
+      </span>
+    </p>
+  </div>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+    Neither method is superior. Plotting contact durations will give fewer interaction sites, and much
+    more pronounced maximum vs minimum levels. It accentuates the most localized interaction spots.
+    The average number of contacts are more difficult to interpret, but they give a better picture of how
+    involved residues are in making contacts with cholesterol.
+  </p>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+    <span style="font-weight: 550">Should the contact maps match perfectly with the cholesterol density?</span>
+  </p>
+  <p id="article-space" style="max-width: 60em; padding-top: 5px ; text-align: justify; margin: auto;">
+    Not necessarily! They should give an overall agreement but the 3D density is calculated for only the ROH
+    bead of cholesterol, whereas a "contact" is considered for the whole cholesterol molecule. It is, however,
+    quite easy to infer the overall alignment of cholesterol in the binding sites from just the ROH bead density.
+  </p>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+    <span style="font-weight: 550">Why isn't the density of PIP lipids more localized?</span>
+  </p>
+  <p id="article-space" style="max-width: 60em; padding-top: 5px ; text-align: justify; margin: auto;">
+    The issue lies on the low concentration of PIP lipids. Any given putative binding site for PIP lipids, contains
+    usually 1, 2 or maybe 3 lipids at any given time. Since, in our calculations of the PIP lipid 3D density
+    we only consider the CP beads, that leads to there being only a few data points per frame and as such
+    the result will be less well-defined.
+  </p>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+      <span style="font-weight: 550">Why do the slice representations extend underneath and over the protein?</span>
+    </p>
+    <p id="article-space" style="max-width: 60em; padding-top: 5px ; text-align: justify; margin: auto;">
+      The slice representation is just a different way of visualizing the lipid density. Because lipids are free
+      to move in the simulations in all directions, they will form small undulations on the bilary. The slice
+      representations will capture this motion.
+  </p>
+
+
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+      <span style="font-weight: 550">How do we compare lipid binding between different GPCRs?</span>
+    </p>
+    <p id="article-space" style="max-width: 60em; padding-top: 5px ; text-align: justify; margin: auto;">
+      We have used the same protocol to calculate the densities for all GPCRs, and as such, the localization of
+      cholesterol/PIP lipids should be directly comparable. It is, however, not easy to get a measure of the binding
+      strength, especially if we want to compare binding sites in-between different GPCRs. A significantly higher
+      isosurface value for cholesterol, for instance, for one GPCR indicates a "stronger" binding compared
+      to a lower isosurface value for another GPCR. However, this is not guaranteed, and it is unclear what
+      "significantly higher" in this context means.
+      <br>We also plot the number and duration of contacts formed with cholesterol for each residue,
+      and these results are even more difficult to compare between different GPCRs in terms of binding strength.
+      In fact, we try to avoid this comparison. That is why, for instance, the slider to display the labes,
+      where the size of the label corresponds to either the number or duration of contacts depending on the map being visualized,
+      is reset everytime a new representation is displayed or GPCR is loaded.
+  </p>
+
+  <p id="article-space" style="max-width: 60em; padding-top: 20px ; text-align: justify; margin: auto;">
+  </p>
+
+
+    <h4 style="font-size: 30px; text-align: center;  padding-top: 70px"> REFERENCES</h4>
+
+  <div style="text-align: center; padding-top: 30px">
+    <ul id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+        <li>Marrink, Siewert J., et al. <a href="https://pubs.acs.org/doi/abs/10.1021/jp071097f" target="_blank">
+                "The MARTINI force field: coarse grained model for biomolecular simulations."</a>
+            The journal of physical chemistry B 111.27 (2007): 7812-7824.
+        </li>
+        <li>
+            Ingólfsson, Helgi I., et al. <a href="https://pubs.acs.org/doi/abs/10.1021/ja507832e" target="_blank">
+                "Lipid organization of the plasma membrane." </a>
+            Journal of the american chemical society 136.41 (2014): 14554-14559.
+        </li>
+        <li>
+            Corradi, Valentina, et al. <a href="https://pubs.acs.org/doi/abs/10.1021/acscentsci.8b00143"
+                target="_blank">
+                "Lipid–protein interactions are unique fingerprints for membrane proteins." </a>
+            ACS central science 4.6 (2018): 709-717.
+        </li>
+        <li>
+            Marino, Kristen A., et al.
+            <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005240"
+                target="_blank">
+                "Impact of lipid composition and receptor conformation on the spatio-temporal organization of
+                μ-opioid
+                receptors in a multi-component plasma membrane model." </a>
+            PLoS computational biology 12.12 (2016): e1005240
+        </li>
+    </ul>
+
+    <p id="article-space"
+    style="max-width: 60em; padding-top: 50px; padding-bottom: 20px; text-align: justify; margin: auto;">
+  </p>
+
+</div>
+
+</body>
+
+</html>
