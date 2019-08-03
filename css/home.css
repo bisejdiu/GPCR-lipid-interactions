@@ -1,0 +1,283 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+#apps {
+    /* background: #eee !important; */
+    background: white !important;
+    /* background: black !important; */
+}
+
+  @media (min-width: 576px) {
+    .container {
+      max-width: 1040px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 1220px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      max-width: 1460px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1540px;
+    }
+  }
+
+body {
+  color: #777777;
+  font-family: "Poppins", sans-serif;
+  /* font-size: 14px; */
+  font-size: 0.88em;
+  font-weight: 300;
+  line-height: 1.625em;
+  position: relative;
+}
+
+a {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+a {
+  color: black;
+  font-weight: 550;
+}
+
+a, a:focus, a:hover {
+  text-decoration: none;
+  outline: 0;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  color: #222222;
+  line-height: 1.2em !important;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.h1, .h2, .h3,
+.h4, .h5, .h6 {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #222222;
+}
+
+h1, .h1 {
+  font-size: 36px;
+}
+
+h2, .h2 {
+  font-size: 30px;
+}
+
+h3, .h3 {
+  font-size: 24px;
+}
+
+h4, .h4 {
+  font-size: 20px;
+}
+
+h5, .h5 {
+  font-size: 16px;
+}
+
+h6, .h6 {
+  font-size: 14px;
+  color: #222222;
+}
+
+
+section {
+    padding: 60px 0;
+}
+
+section .section-title {
+    text-align: center;
+    /* color: #007b5e; */
+    color: black;
+    font-weight: 600;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+#apps .card {
+    border: none;
+    background: #ffffff;
+    margin-left: 3rem;
+    min-width: 44rem;
+    border-radius: 40px;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,0.25), -5px -5px 10px 2px rgba(0,0,0,0.22);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: scale(1.1, 1.1);
+    box-shadow: 2px 2px 10px 7px rgba(0,0,0,0.25),
+      -2px -2px 10px 7px rgba(0,0,0,0.22);
+  }
+
+
+
+.card {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+    justify-content: left;
+    min-width: 30rem;
+    transform: scale(0.85, 0.85)
+}
+
+
+.card .card-title {
+    /* color: #007b5e !important; */
+    color: black !important;
+    font-size: 30px;
+    margin-bottom: -10px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-title {
+    /* color: #007b5e !important; */
+    color: black !important;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.card .card-body img {
+    width: inherit;
+    height: 20rem;
+    border-radius: 40px;
+    object-fit: cover !important;
+}
+
+.card .card-text {
+  color: #000;
+  opacity: 0;
+  max-width: 42rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-text {
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+
+.btn-primary {
+    opacity: 0;
+    transition: all 0.3s ease;
+    background-color: #635359;
+    /* margin-bottom: -60px; */
+}
+
+.card:hover .btn-primary {
+    opacity: 1;
+    outline-color: #635359;
+    box-shadow: none;
+    border: none;
+    transition: all 0.3s ease;
+    /* margin-bottom: 60px; */
+}
+
+.btn-primary:hover {
+  background-color: rgb(187, 172, 177);
+}
+
+.card:hover .btn-primary:focus {
+  background-color: #635359;
+  outline-color: #635359;
+  border: none;
+  box-shadow: none;
+}
+
+body {
+  position: relative;
+}
+
+.default-header {
+  padding: 5px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.menu-bar {
+  cursor: pointer;
+}
+
+.menu-bar span {
+  color: #000;
+  font-size: 24px;
+}
+
+.main-menubar {
+  position: relative;
+}
+
+nav {
+  margin-right: 70px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  transform-origin: 100% 50%;
+}
+
+@media (max-width: 767px) {
+  nav {
+    margin-right: 0;
+    position: absolute;
+    right: 0;
+    top: 47px;
+    text-align: right;
+    padding: 20px 0;
+    z-index: 5;
+    background: #fff;
+  }
+  nav a {
+    color: #2482ff !important;
+  }
+  nav a:hover {
+    color: #2482ff;
+  }
+}
+
+nav.hide {
+  transform: scale(0);
+}
+
+nav a {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 25px;
+  display: flexbox;
+  justify-content: space-around;
+}
+
+@media (max-width: 767px) {
+  nav a {
+    margin: 5px 25px;
+  }
+}
+
+nav a:hover {
+  color: #2482ff;
+}

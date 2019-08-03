@@ -5,67 +5,87 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
- <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    /* html, body {margin: 0; height: 100%; overflow: hidden} */
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-    input {
-      font-size: 2em;
-    }
-  </style>
-
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
 
   <link rel="stylesheet" href="css/linearicons.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/pace.css">
+  <link rel="stylesheet" href="css/home.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 
 </head>
 <body>
 
   <!-- Start Header Area -->
   <header class="default-header">
-    <div class="container">
-      <div class="header-wrap">
-        <div class="header-top d-flex justify-content-between align-items-center">
-          <div class="logo">
-            <a href="index.html"><img src="img/logo.png" height="37" width="124"></a>
-          </div>
-          <div class="main-menubar d-flex align-items-center">
-            <nav class="hide">
-              <a href="index.html">Home</a>
-              <a href="details.html">Details</a>
-              <a href="contact.html">Contact</a>
-            </nav>
-            <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+      <div class="container">
+        <div class="header-wrap">
+          <div class="header-top d-flex justify-content-between align-items-center">
+            <div class="logo">
+              <a href="index.html"><img src="img/logo.png" height="37" width="124"></a>
+            </div>
+            <div class="main-menubar d-flex align-items-center">
+              <nav class="hide">
+                <a href="index.html">Home</a>
+                <a href="details.html">Details</a>
+                <a href="references.html">References</a>
+                <a href="contact.html">Contact</a>
+              </nav>
+              <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+            </div>
           </div>
         </div>
       </div>
+    </header>
+
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/main.js"></script>
+
+  <!-- Apps -->
+  <section id="apps" class="pb-5">
+    <div class="container">
+        <div>
+            <h1 style="font-size: 60px; text-align: center; padding-top: 15px; padding-bottom: 20px;">LIPID-PROTEIN INTERACTION APPS</h1>
+        </div>
+
+        <div class="row">
+
+
+          <!-- New Application -->
+          <div class=".col-lg-8 .col-lg-8 ">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p><img class=" img-fluid" src="img/ngl_density_contact_map.png" alt="card image"></p>
+                        <h4 class="card-title">3D Density & Contact Heatmaps</h4>
+                        <p class="card-text">NGL Viewer based application to visualize pre-calclated 3D densities
+                          and projected contact heatmaps on the surface of proteins.
+                        </p>
+                        <a href="viewer.html" target="_blank" class="btn btn-primary stretched-link">Explore</a>
+                    </div>
+                </div>
+          </div>
+          <!-- ./New Application -->
+          <!-- New Application -->
+          <div class=".col-lg-8 .col-lg-8 ">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p><img class=" img-fluid" src="img/thickcurvApp2.png" alt="card image"></p>
+                        <h4 class="card-title">Membrane Thickness & Curvature</h4>
+                        <p class="card-text">Three.js based application showing the thickness and curvature induced
+                          by membrane proteins in their surrounding lipid environment.
+                        </p>
+                        <a href="thickcurv.html" target="_blank" class="btn btn-primary stretched-link">Explore</a>
+                    </div>
+                </div>
+          </div>
+
+        </div>
     </div>
-  </header>
-
-
-  <script src="js/ngl.js"></script>
-  <script src="js/gpcrs.js"></script>
-
-  <div id="viewport" style="width:100%; height:96%;"></div>
-  <div style="text-align:center; position:relative; bottom:3em;"></div>
-
-  <script src="js/jquery-2.2.4.min.js"></script>
-  <script src="js/jquery.nice-select.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/pace.min.js"></script>
+  </section>
 
   </body>
 </html>

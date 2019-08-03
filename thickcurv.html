@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Membrane Thickness & Curvature</title>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+
+            #gui { position: absolute; top: 55.4em; right: 30em }
+
+        </style>
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="css/linearicons.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/main_2.css">
+        <link rel="stylesheet" href="css/pace.css">
+
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery.nice-select.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/main.js"></script>
+
+
+	</head>
+	<body>
+
+  <!-- Start Header Area -->
+  <header class="default-header">
+        <div class="container">
+          <div class="header-wrap">
+            <div class="header-top d-flex justify-content-between align-items-center">
+              <div class="logo">
+                <a href="index.html"><img src="img/logo.png" height="37" width="124"></a>
+              </div>
+              <div class="main-menubar d-flex align-items-center">
+                <nav class="hide">
+                  <a href="index.html">Home</a>
+                  <a href="details.html">Details</a>
+                  <a href="references.html">References</a>
+                  <a href="contact.html">Contact</a>
+                </nav>
+                <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+        <div>
+                <h1 style="font-size: 60px; text-align: center; padding-top: 70px">THICKNESS & CURVATURE</h1>
+            </div>
+
+            <div style="text-align: center; padding-top: 30px">
+            <p id="article-space" style="max-width: 60em; padding-top: 15px ; text-align: justify; margin: auto;">
+              Analysis of membrane deformations as a result of embedded proteins in terms of lipid-protein interactions usually come secondary to
+              the analysis of individual interactions of proteins with lipids, and they are even less frequently visualized in detail. The importance
+              of the bulk lipid environment has been noted in the literature, in particular for GPCRs.
+
+              <br><br>
+              Using this application, we can visualize membrane thickness and curvature in great detail. The calculation method for the thickness and
+              curvature profiles uses g_surf, a tool developed by our group and described
+              <a href="https://pubs.acs.org/doi/full/10.1021/acscentsci.8b00143" target="_blank">here</a>. As described in the paper
+              g_surf uses three interpolated grid-surfaces (upper, middle, and lower) from which thickness and curvature are calculated.
+              Surface averages are calculated for the last 5 μs of simulation trajectories.
+
+              <br><br>
+              The application visualizes these results in an interactive format. You can visualize the results as either a point or surface mesh presentation.
+              Each has its own options and parameters which can be tweaked to allow the user to select a part of the figure and control the detail of whatever aspect
+              of it. We also show the position of embedded proteins as a point presentation with a coloring scheme that runs from black to red to pink to white as
+              the GPCR sequence goes from TM1 to TM7/8. This makes it possible to clearly see which part of the protein is causing what deformation in the membrane.
+              Considering that there are four protein copies in our simulation setups, this also allows for the comparison of the deformation caused by one protein
+              to the others, as considering the size of the systems, each proteins' activity should be independent to that of the others'.
+            </p>
+
+            <p id="article-space" style="max-width: 60em; padding-top: 30px ; text-align: justify; margin: auto;"></p>
+
+            <div id="thickcurve" class="thickcurve" style="max-width: 80em; height: 45em; text-align: justify; margin: auto;"></div>
+
+
+        <script src="js/threejs/three.min.js"></script>
+        <script src="js/threejs/PLYLoader.js"></script>
+        <script src="js/threejs/TrackballControls.js"></script>
+        <script src="js/threejs/WebGL.js"></script>
+        <script src="js/threejs/Lut.js"></script>
+        <script src="js/threejs/dat.gui.min.js"></script>
+        <script src="js/threejs/thickcurve.js"></script>
+
+	<script>
+
+	guis = {}
+
+	function createElement(name, properties, style) {
+		var el = document.createElement(name)
+		Object.assign(el, properties)
+		Object.assign(el.style, style)
+		return el
+	}
+
+	function createSelect(options, properties, style) {
+		var select = createElement("select", properties, style)
+		options.forEach(function (d) {
+			select.add(createElement("option", {
+				value: d[0],
+				text: d[1]
+			}))
+		})
+		return select
+	}
+
+	var exampleSelect = createSelect([
+		["5HT1B", "5HT1B"],
+		["A2ARa", "A2ARa"],
+		["A2ARi", "A2ARi"],
+		["ApelinR", "ApelinR"],
+		["AT2R", "AT2R"],
+		["b2ARa", "b2ARa"],
+		["b2ARi", "b2ARi"],
+		["CalcitoninR", "CalcitoninR"],
+		["CB1R", "CB1R"],
+		["D3R", "D3R"],
+		["ETbR", "ETbR"],
+		["GLP1", "GLP1"],
+		["GlucagonR", "GlucagonR"],
+		["H1R", "H1R"],
+		["LPAR1", "LPAR1"],
+		["M2Ra", "M2Ra"],
+		["M2Ri", "M2Ri"],
+		["mGlu5", "mGlu5"],
+		["mORa", "mORa"],
+		["mORi", "mORi"],
+		["OX2R", "OX2R"],
+		["PAR2", "PAR2"],
+		["RhodRa", "RhodRa"],
+		["RhodRi", "RhodRi"],
+		["S1PR1", "S1PR1"],
+		["SMO", "SMO"],
+		["US28", "US28"],
+	], {
+		onchange: function (e) {
+			var id = e.target.value;
+
+			document.getElementById("thickcurve").innerHTML = "";
+      document.getElementById("thickcurve").appendChild(exampleSelect)
+
+
+			scene = thickcurve(id)
+
+			gui = guis['g'];
+			gui.destroy();
+
+		}
+	}, {
+		top: "0em",
+		left: "0em"
+	})
+	exampleSelect.setAttribute("id", "soflow-color");
+	document.getElementById("thickcurve").appendChild(exampleSelect)
+  document.getElementsByTagName("select")[0].value = "5HT1B"
+
+    scene = thickcurve("5HT1B");
+
+
+    </script>
+
+    <div style="text-align: center; padding-top: 60px">
+            <p id="article-space" style="max-width: 60em; padding-top: 75px ; text-align: justify; margin: auto;">
+              A few more things to note:
+
+              <br><br>
+              - The application uses <a href="https://threejs.org/"" target="_blank">Three.js</a> to display the data within the browser, but the mean and gaussian
+              curvature colorschemes are calculated using <a href="http://www.meshlab.net/" target="_blank">Meshlab</a>.
+              <br><br>
+              - You can toggle the visibility of each layer of the plot.
+              <br><br>
+              <!-- - if you prefer to view the application in full-screen please click <a href="thickcurve-full-screen.html">here</a> -->
+
+            </p>
+
+            <p id="article-space" style="max-width: 60em; padding-top: 30px ; text-align: justify; margin: auto;"></p>
+
+    </div>
+
+	</body>
+</html>
