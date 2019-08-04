@@ -914,11 +914,11 @@ addElement(gpcrNameText)
 stage.mouseControls.add("scroll-shift", function () {
   if (surfPIPs) {
     var levelPIPs = surfPIPs.getParameters().isolevel.toFixed(1)
-    isolevelPIPsText.innerText = "PIPs density level: " + levelPIPs + "\u03C3"
+    isolevelPIPsText.innerText = "PIPs density level: " + levelPIPs// + "\u03C3"
   }
   if (surfCHOL) {
     var levelCHOL = surfCHOL.getParameters().isolevel.toFixed(2)
-    isolevelCHOLText.innerText = "Chol level: " + levelCHOL + "\u03C3"
+    isolevelCHOLText.innerText = "Chol level: " + levelCHOL //+ "\u03C3"
   }
 })
 
