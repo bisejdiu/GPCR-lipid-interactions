@@ -289,7 +289,7 @@ var surfPIPs;
 var sliceRepr;
 function loadPIPs(input) {
   return stage.loadFile(input).then(function (o) {
-    isolevelPIPsText.innerText = "PIPs density level: 6.0\u03C3"
+    isolevelPIPsText.innerText = "PIPs density level: 6.0"//\u03C3"
     scrollSelect.value = "both"
     scrollPIPs = true
     surfPIPs = o.addRepresentation("surface", {
@@ -317,7 +317,7 @@ function loadPIPs(input) {
 var surfCHOL, sliceReprCHOL
 function loadCHOL(input) {
   return stage.loadFile(input).then(function (o) {
-    isolevelCHOLText.innerText = "Chol level: 6.0\u03C3"
+    isolevelCHOLText.innerText = "Chol level: 6.0"//\u03C3"
     scrollSelect.value = "both"
     scrollCHOL = true
     surfCHOL = o.addRepresentation("surface", {
@@ -1163,11 +1163,6 @@ function loadGPCR(id) {
 
 // The default GPCR to load.
 loadGPCR("RhodRa");
-// document.getElementById("labelButton").disabled = true;
-// document.getElementById("labelSlider").disabled = true;
-// document.getElementById("labelSlider").style.opacity = 0.5;
-// document.getElementById("sliceSlider").disabled = true;
-// document.getElementById("sliceSlider").style.opacity = 0.5;
 
 var slider = document.getElementById("slider1");
 var slider2 = document.getElementById("slider2");
@@ -1205,14 +1200,8 @@ button5.classList.add("primary-btn");
 bfButtonCss.classList.add("primary-btn");
 labelButtonCss.classList.add("primary-btn");
 
-// hcSelect = document.getElementsByTagName("select");
-// for (var i=1; i<hcSelect.length; i++) {
-//   hcSelect[i].id = "soflow-color"
-// }
 
 document.getElementById("labelButton").disabled = true;
 document.getElementById("labelButton").style.opacity = 0;
-// document.getElementById("labelSlider").disabled = true;
-// document.getElementById("labelSlider").style.opacity = 0.5;
 
 });
