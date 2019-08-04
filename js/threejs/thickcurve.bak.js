@@ -12,7 +12,6 @@ init();
 animate();
 
 function init() {
-    var allPromises = [];
     var clientHeight = document.getElementById('thickcurve').clientHeight;
     var clientWidth = document.getElementById('thickcurve').clientWidth;
 
@@ -45,8 +44,6 @@ function init() {
 
 
     var loader = new THREE.PLYLoader();
-    allPromises.push ( new Promise (function(resolve, reject) {
-
     loader.load( dir + 'top_plane_curv.ply', function ( geometry ) {
 
         var materials = new THREE.PointsMaterial({   // vertexColors: THREE.VertexColors,
@@ -60,12 +57,8 @@ function init() {
         particles.material.color.set('#2f22ff')
 
         scene.add( particles );
-    resolve(particles);
-    reject("Couldnt do it budd")
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'down_plane_curv.ply', function ( geometry ) {
 
         var materials = new THREE.PointsMaterial({   size: 10,
@@ -77,12 +70,8 @@ function init() {
         particles = new THREE.Points(geometry, materials);
         particles.name = "downPoints"
         scene.add( particles );
-    resolve(particles);
-    reject("Couldnt do it budd")
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'mid_plane_curv.ply', function ( geometry ) {
 
         var materials = new THREE.PointsMaterial({	 size: 10,
@@ -94,10 +83,7 @@ function init() {
         particles = new THREE.Points(geometry, materials);
         particles.name = "midPoints"
         scene.add( particles );
-    resolve(particles);
-    reject("Couldnt do it budd")
     } );
-    }));
 
 
 
@@ -196,7 +182,6 @@ function init() {
     } );
 
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'top_plane_curv.ply', function ( geometry ) {
 
         // var r = "textures/cube/Bridge2/";
@@ -220,13 +205,9 @@ function init() {
         mesh.name = "topCurve";
 
         scene.add( mesh );
-    resolve(mesh);
-    reject("Couldnt do it budd")
 
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'top_plane_curv_g.ply', function ( geometry ) {
 
         var material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors,
@@ -237,13 +218,9 @@ function init() {
         mesh.visible = false;
 
         scene.add( mesh );
-    resolve(mesh);
-    reject("Couldnt do it budd")
 
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'down_plane_curv.ply', function ( geometry ) {
 
         var material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors,
@@ -253,13 +230,9 @@ function init() {
         mesh.name = "downCurve";
 
         scene.add( mesh );
-    resolve(mesh);
-    reject("Couldnt do it budd")
 
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'down_plane_curv_g.ply', function ( geometry ) {
 
         var material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors,
@@ -270,13 +243,9 @@ function init() {
         mesh.visible = false;
 
         scene.add( mesh );
-    resolve(mesh);
-    reject("Couldnt do it budd")
 
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'mid_plane_curv.ply', function ( geometry ) {
 
         var material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors,
@@ -286,13 +255,9 @@ function init() {
         mesh.name = "midCurve";
 
         scene.add( mesh );
-    resolve(mesh);
-    reject("Couldnt do it budd")
 
     } );
-    }));
 
-    allPromises.push ( new Promise (function(resolve, reject) {
     loader.load( dir + 'mid_plane_curv_g.ply', function ( geometry ) {
 
         var material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors,
@@ -303,11 +268,8 @@ function init() {
         mesh.visible = false;
 
         scene.add( mesh );
-    resolve(mesh);
-    reject("Couldnt do it budd")
 
     } );
-    }));
 
 
     var ambientLight = new THREE.AmbientLight( 0x333333, 5 );
@@ -343,24 +305,8 @@ function init() {
         return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
       }
 
-    // var downCurveg = scene.getObjectByName('downCurveg');
-    // console.log(downCurveg)
-    // do {
-    //     setTimeout(function(){
-    //       console.log("waiting")
-    //     }, 1000);
-    //     var downCurveg = scene.getObjectByName('downCurveg');
-    //     console.log(downCurveg);
-    // } while (downCurveg == undefined);
 
-    // setTimeout(function() {
-    // window.onload = function() {
-    // async function guiOut() {
-    // await function guiOut() {
-    Promise.all (allPromises) 
-	.then (function ( t ){
-
-		console.log(t)
+    setTimeout(function() {
 
         var gui = new dat.GUI( { width: 240, autoPlace: false } );
         gui.domElement.id = 'gui';
@@ -658,16 +604,11 @@ function init() {
     var guiContainer = document.getElementById('thickcurve');
     guiContainer.appendChild(gui.domElement);
 
-    // console.log(guiContainer)
+    console.log(guiContainer)
 
 
 
-    // }, 1000);
-    // };
-    // guiOUT();
-    }, function () {
-	    console.log("id didnt work budd")
-    });
+    }, 1000)
 
     // listener
     window.addEventListener( 'resize', onWindowResize, false );
@@ -693,4 +634,3 @@ function render() {
 
 return scene
 }
-
