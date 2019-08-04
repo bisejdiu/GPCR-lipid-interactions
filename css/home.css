@@ -4,7 +4,7 @@
     background: white !important;
     /* background: black !important; */
 }
-
+/*
   @media (min-width: 576px) {
     .container {
       max-width: 1040px;
@@ -27,7 +27,7 @@
     .container {
       max-width: 1540px;
     }
-  }
+  } */
 
 body {
   color: #777777;
@@ -118,7 +118,7 @@ section .section-title {
     border: none;
     background: #ffffff;
     margin-left: 3rem;
-    min-width: 44rem;
+    min-width: 34rem;
     border-radius: 40px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,0.25), -5px -5px 10px 2px rgba(0,0,0,0.22);
     transition: 0.4s;
