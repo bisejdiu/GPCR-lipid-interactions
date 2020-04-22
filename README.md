@@ -1,6 +1,10 @@
 # GPCR-lipid Interactions
 
-This GitHub repository complements the following research article: TBD
+This GitHub repository complements the following research article: 
+[Lipid-Protein Interactions are a Unique Property and Defining Feature of G Protein-Coupled Receptors](www.sciencedirect.com/science/article/abs/pii/S0006349520302575)
+
+You can gain free access to the article for a limited time here: https://authors.elsevier.com/a/1axU41SPSvl7l
+
 
 The repository can be cloned and launched locally or viewed at the following GitHub page: https://bisejdiu.github.io/GPCR-lipid-interactions/
 
